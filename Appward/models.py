@@ -43,3 +43,31 @@ class Project(models.Model):
         search_project = cls.objects.filter(title=search_term)
         return search_project
 
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    text = models.CharField(max_length=200)
+    project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.user
+    
+    def save_comments(self):
+        self.save()
+    
+    def delete_comments(self):
+        self.delete()
+
+
+    @classmethod 
+    def all_comments(cls, id):
+        comments = cls.objects.filter(project_id = id)
+        return comments
+    
+class Rating(models.Model):
+    project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.IntegerField(default=1)
+    usability = models.IntegerField(default=1)
+    content = models.IntegerField(default=1)
