@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
-    profile_pic = models.ImageField(upload='images/')
+    profile_pic = CloudinaryField('image')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500)
     information = models.TextField(max_length=500)
@@ -19,7 +20,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='images/')
+    image = CloudinaryField('image')
     description = models.CharField(max_length=300)
     link = models.URLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
