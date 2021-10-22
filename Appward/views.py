@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.core.exceptions import RequestAborted
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .forms import CommentForm, EditProfileForm, 
+from .forms import CommentForm, EditProfileForm, NewProjectForm
+from .models import Profile, Project, Comments, Rating
 
 from Appward.models import Project
 
@@ -37,6 +39,31 @@ def search_reslts(request):
         return render(request, 'search.html', {'message':message})
 
 @login_required(login_url='/accounts/login/')
-def project_new(request):
+def new_project(request):
     if request.method=='POST':
-        
+        form = NewProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = request.user
+            project.save()
+
+            return redirect('home')
+    else:
+        form = NewProjectForm()
+        return render(request, 'new_project.html', {'form':form})
+
+
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    user = request.user
+    if request.method=='POST':
+        form = EditProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile= form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+
+    else:
+        form = EditProfileForm(request.POST, request.FILES)
+    return render(request, 'update_profile.html',{'form': form})
