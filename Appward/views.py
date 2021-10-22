@@ -34,3 +34,5 @@ def search_reslts(request):
     else:
         message = 'You have not entered anything to search '
         return render(request, 'search.html', {'message':message})
+
+@login_required(login_url='/accounts/login/')
