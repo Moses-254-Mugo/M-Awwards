@@ -58,7 +58,31 @@ def new_project(request):
 
 @login_required(login_url='/accounts/login/')
 def single_project(request, id):
-    
+    project = Project.objects.get(id=id)
+    comments = Comments.objects.filter(project_id=id)
+    rates = Rating.objects.filter(project_id = id)
+    designrate = []
+    usabilityrate =[]
+    contentrate = []
+
+    if rates:
+        for rates in rates:
+            designrate.append(rate.design)
+            usabilityrate.append(rate.usability)
+            contentrate.append(rate.content)
+        
+        total = len(designrate)*10
+        design = round(sum(designrate)/total*100, 1)
+        usability = round(sum(usabilityrate)/total*100,1)
+        content = round(sum(contentrate)/total*100,1)
+        return render(request, 'single_project.html',{'project':project, 'comments':comments,'design': design,'usability': usability, 'content':content})
+
+    else:
+        design = 0
+        usability = 0
+        content = 0
+
+        return render(request, 'single_project.html',{'project':project, 'comments':comments, 'design': design,'usability':usability, 'content':content})
 
 
 
