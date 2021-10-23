@@ -111,10 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
+# adding config
 cloudinary.config( 
-  cloud_name = "YOUR_CLOUD_NAME", 
-  api_key = "YOUR_API_KEY", 
-  api_secret = "YOUR_API_SECRET" 
+  cloud_name = "mosejoan", 
+  api_key = "548958647683456", 
+  api_secret = "iIoM62bAS1XfPqWBF78L19G8Yt4" 
 )
 
 

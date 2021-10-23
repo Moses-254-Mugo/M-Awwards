@@ -52,7 +52,7 @@ class Comments(models.Model):
 
 
     def __str__(self):
-        return self.user
+        return self.text
     
     def save_comments(self):
         self.save()
