@@ -10,7 +10,7 @@ class Profile(models.Model):
     info = models.TextField(max_length=500)
 
     def __str__(self):
-        return self.user
+        return self.bio
     
     def save_profile(self):
         return self.save()

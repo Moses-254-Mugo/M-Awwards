@@ -3,20 +3,24 @@
 <div class="container">
 
   <div class="row">
-    {% if articles%}
-      <h2>Found {{ articles|length }} of searched term {{message}}</h2>
+    {% if projects%}
+      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
     {% else %}
-      <h2> Found 0 articles for the search term {{message}}</h2>
+      <h2> Found 0 projects for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if articles %}
-    {% for article in articles %}
+  {% if projects %}
+    {% for proj in projects %}
       <div class="col-sm-6 col-md-3">
-          <h1>{{article.title}}</h1>
+        <h1>{{proj.title}}</h1>
+        <a href="/singleproject/{{proj.id}}">
+          <img src="{{proj.image.url}}" alt="image" width="450px">
+        </a>
+          <a href="{{proj.project.link">{{proj.link}}</a>
       </div>
     {% endfor %}
   {% endif %}
