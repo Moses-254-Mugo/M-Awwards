@@ -4,10 +4,38 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <h1>{{}}</h1>
+        <div class="col-sm-6">
+            <h1>{{project.title}}</h1>
+            <img src="{{project.image.url}}" alt="" width="450px">
+            <h3>{{project.description}}</h3>
+            <a href="{{project.link}}">{{project.link}}</a>
+            <p><b>Posted by:</b> {{project.user}}</p>
+
 
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="{%url 'comment' project.id%}" style="text-align: center;" class="btn btn-primary">Review</a>
+                <p><u>ReVies for {{project.title}}</u></p>
+                {% for comment in comments%}
+                    <h6>{{comment.txt}}</h6>
+                    {%empty%}
+                    <p>Not yet Reviewed</p>
+                {% endfor%}
+
+            </div>
+            <div class="col-sm-6">
+                <p><b>Ratings</b></p>
+                <p>Design.{{design}}%</p>
+                <p>Usability: {{usability}}%</p>
+                <p>Content: {{content}}%</p>
+            </div>
+        </div>
     </div><!--end row -->
+    <div class="row">
+        <div class="col-sm-12">
+            
+        </div>
+    </div>
 </div>
 {% endblock %}

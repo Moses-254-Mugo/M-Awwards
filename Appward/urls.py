@@ -8,6 +8,7 @@ urlpatterns = [
     # url(r'^$', views.welcome, name='welcome'),
     url(r'^$',views.index,name='home'),
     path('comment/<int:id>/',views.comment,name='comment'),
+    url(r'^singleproject/(\d+)',views.single_project,name='singleproject'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
