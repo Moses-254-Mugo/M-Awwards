@@ -57,6 +57,13 @@ def new_project(request):
 
 
 @login_required(login_url='/accounts/login/')
+def single_project(request, id):
+    
+
+
+
+
+@login_required(login_url='/accounts/login/')
 def edit_profile(request):
     user = request.user
     if request.method=='POST':
