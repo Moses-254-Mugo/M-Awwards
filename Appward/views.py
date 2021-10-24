@@ -40,7 +40,7 @@ def search_reslts(request):
         return render(request, 'search.html', {'message':message})
 
 @login_required(login_url='/accounts/login/')
-def new_project(request):
+def Newproject(request):
     if request.method=='POST':
         form = NewProjectForm(request.POST, request.FILES)
         if form.is_valid():

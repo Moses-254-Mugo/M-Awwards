@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^$',views.index,name='home'),
     path('comment/<int:id>/',views.comment,name='comment'),
     url(r'^singleproject/(\d+)',views.single_project,name='singleproject'),
+    url(r'^newproject/$',views.Newproject,name='newproject'),
     path('rate/<int:id>/',views.rate,name='rates'),
 ]
 if settings.DEBUG:
