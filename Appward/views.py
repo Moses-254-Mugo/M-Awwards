@@ -42,7 +42,7 @@ def search_reslts(request):
 @login_required(login_url='/accounts/login/')
 def Newproject(request):
     if request.method=='POST':
-        form = NewProjectForm(request.POST, request.FILES)
+        form = NewProjectForm(request.POST,request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
             project.user = request.user
@@ -50,12 +50,13 @@ def Newproject(request):
 
             return redirect('home')
     else:
+
         form = NewProjectForm()
         return render(request, 'New-project.html', {'form':form})
 
 
 @login_required(login_url='/accounts/login/')
-def single_project(request, id):
+def singleProject(request, id):
     project = Project.objects.get(id=id)
     comments = Comments.objects.filter(project_id=id)
     rates = Rating.objects.filter(project_id = id)
@@ -125,12 +126,12 @@ def comment(request,id):
 
 
 @login_required(login_url='/accounts/login/')
-def rate(request, id):
+def Rate(request, id):
     if request.method =='POST':
         rates = Rating.objects.filter(id=id)
         for rate in rates:
             if rate.user == request.user:
-                messages.info(request, 'You can not rate a project twice')
+                messages.info(request, 'You can only rate a project once')
                 return redirect('singleproject', id)
         design = request.POST.get('design')
         usability = request.POST.get('usability')
