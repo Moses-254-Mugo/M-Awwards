@@ -7,7 +7,7 @@
             <div class="card border-primary mb-3">
                 <div class="card-header text-center"><u>Add Your Project</u></div>
                 <div class="card-body text-primary text-center">
-                    <form action="{% url 'newproject' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'newproject' id %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %} {% bootstrap_form form %}
                         <button type="submit" class="btn btn-success" style="margin-left: 10%;">Post</button>
                     </form>

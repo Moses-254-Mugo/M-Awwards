@@ -51,7 +51,7 @@ def Newproject(request):
             return redirect('home')
     else:
         form = NewProjectForm()
-        return render(request, 'new_project.html', {'form':form})
+        return render(request, 'New-project.html', {'form':form})
 
 
 @login_required(login_url='/accounts/login/')
