@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     {% for project in all_projects %}
     <div class="row">
         <div class="col-sm-2"></div>
@@ -10,7 +10,7 @@
             <h4>{{project.description}}</h4>
             <a href=""></a><a href="{{project.link}}">{{project.link}}</a>
             <p>Posted by: {{project.user}}</p>
-            <a href="" class="btn btn-primary"> Review</a>
+            <a href="{%url 'rates' project.id%}" class="btn btn-primary"> Review</a>
             <a href="{%url 'comment' project.id%}" class="btn btn-primary">Comment</a>
 
         </div>

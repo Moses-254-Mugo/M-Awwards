@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^$',views.index,name='home'),
     path('comment/<int:id>/',views.comment,name='comment'),
     url(r'^singleproject/(\d+)',views.single_project,name='singleproject'),
+    path('rate/<int:id>/',views.rate,name='rates'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

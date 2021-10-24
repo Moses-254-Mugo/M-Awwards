@@ -1,12 +1,10 @@
-from django.core.checks import messages
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, EditProfileForm, NewProjectForm
 from .models import Profile, Project, Comments, Rating
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-
-from Appward.models import Project
 
 
 
@@ -66,7 +64,7 @@ def single_project(request, id):
     contentrate = []
 
     if rates:
-        for rates in rates:
+        for rate in rates:
             designrate.append(rate.design)
             usabilityrate.append(rate.usability)
             contentrate.append(rate.content)
@@ -140,7 +138,7 @@ def rate(request, id):
 
         if design and usability and content:
             project = Project.objects.get(id=id)
-            rate = Rating(design = design, usability = usability, content=content, project_id = project, user = request.user)
+            rate = Rating(design = design, usability = usability, content = content, project_id = project, user = request.user)
             rate.save()
             return redirect('singlproject', id)
 

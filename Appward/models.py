@@ -11,12 +11,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.bio
+
+    def delete_profile(self):
+        return self.delete()
     
     def save_profile(self):
         return self.save()
 
-    def delete_profile(self):
-        return self.delete()
+   
 
 class Project(models.Model):
     title = models.CharField(max_length=250)
@@ -25,9 +27,11 @@ class Project(models.Model):
     link = models.URLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.description
 
     def save_project(self):
-        return self.save()
+        self.save()
     
     @classmethod
     def all_projects(cls):
@@ -43,6 +47,11 @@ class Project(models.Model):
     def search_project(cls, search_term):
         search_project = cls.objects.filter(title=search_term)
         return search_project
+
+    @classmethod
+    def user_projects(cls,user):
+        user_projects = cls.objects.filter(user = user)
+        return user_projects
 
 
 class Comments(models.Model):
@@ -67,8 +76,10 @@ class Comments(models.Model):
         return comments
     
 class Rating(models.Model):
+    
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.IntegerField(default=1)
+    design = models.IntegerField(default=1)
     usability = models.IntegerField(default=1)
-    content = models.IntegerField(default=1)
+
