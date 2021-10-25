@@ -15,8 +15,8 @@ urlpatterns = [
     path('newproject/',views.Newproject,name='newproject'),
     url(r'^search/',views.search_reslts,name = 'search_outcomes'),
     url(r'^logout/$',views.logoutRequest,name='logout'),
-    # url(r'^api/profile/$',views.ProfileList.as_view()),
-    # url(r'^api/projects/$',views.ProfileList.as_view()),
+    path('api/profile/',views.ProifleRest.as_view()),
+    path('api/projects/',views.ProjectRest.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
