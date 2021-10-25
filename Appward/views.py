@@ -17,7 +17,6 @@ from .permissions import IsAdminOrReadOnly
 def welcome(request):
     return render(request, 'welcome.html')
 
-@login_required(login_url='/accounts/login/')
 def index(request):
     all_projects = Project.all_projects()
     return render(request, 'index.html', {'all_projects': all_projects})

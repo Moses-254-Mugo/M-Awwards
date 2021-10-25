@@ -1,0 +1,1 @@
+web: gunicorn Maward.wsgi --log-file -
