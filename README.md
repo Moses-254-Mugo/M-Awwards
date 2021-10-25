@@ -9,9 +9,8 @@ Mugo Moses
 M-Awword is a web app that allows users to view posted projects and their details. User can also rate/ review other user's project, search for project, veiw projects overall score and also veiw the profile page. 
 
 ## Screenshots
-<img src="" alt="">
-<img src="" alt="">
-<img src="" alt="">
+<img src="static/images/lading-page.png" alt="">
+<img src="static/images/pizza joint pic.png" alt="">
 
 ## Setup and Installation
 ### Requirements

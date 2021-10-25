@@ -2,40 +2,101 @@
 {% load bootstrap4 %}
 {%  load static %}
 {% block content %}
-<div class="container">
+<div class="container" id="singleproject">
     <div class="row">
-        <div class="col-sm-6">
-            <h1>{{project.title}}</h1>
-            <img src="{{project.image.url}}" alt="" width="450px">
-            <h3>{{project.description}}</h3>
-            <a href="{{project.link}}">{{project.link}}</a>
-            <p><b>Posted by:</b> {{project.user}}</p>
+        <div class="col-sm-5">
+            <form action="{%url 'rate' project.id %}">
+                {%csrf_token %}
+                <h3 class="text-center">Content</h3>
+                <input type="radio" name="content" id="design" value="1">1
+                <input type="radio" name="content" id="design" value="2">2
+                <input type="radio" name="content" id="design" value="3">3
+                <input type="radio" name="content" id="design" value="4">4
+                <input type="radio" name="content" id="design" value="5">5
+                <input type="radio" name="content" id="design" value="6">6
+                <input type="radio" name="content" id="design" value="7">7
+                <input type="radio" name="content" id="design" value="8">8
+                <input type="radio" name="content" id="design" value="9">9
+                <input type="radio" name="content" id="design" value="10">10
+                <br>
 
+                <hr>
+                <h3 class="text-center">Deign</h3>
+                <input type="radio" name="design" id="design" value="1">1
+                <input type="radio" name="design" id="design" value="2">2
+                <input type="radio" name="design" id="design" value="3">3
+                <input type="radio" name="design" id="design" value="4">4
+                <input type="radio" name="design" id="design" value="5">5
+                <input type="radio" name="design" id="design" value="6">6
+                <input type="radio" name="design" id="design" value="7">7
+                <input type="radio" name="design" id="design" value="8">8
+                <input type="radio" name="design" id="design" value="9">9
+                <input type="radio" name="design" id="design" value="10">10
+                <br>
+                <hr>
+                <h3 class="text-center">Usability</h3>
+                <input type="radio" name="usability" id="design" value="1">1
+                <input type="radio" name="usability" id="design" value="2">2
+                <input type="radio" name="usability" id="design" value="3">3
+                <input type="radio" name="usability" id="design" value="4">4
+                <input type="radio" name="usability" id="design" value="5">5
+                <input type="radio" name="usability" id="design" value="6">6
+                <input type="radio" name="usability" id="design" value="7">7
+                <input type="radio" name="usability" id="design" value="8">8
+                <input type="radio" name="usability" id="design" value="9">9
+                <input type="radio" name="usability" id="design" value="10">10
+                <br>
+                <hr>
 
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <a href="{%url 'comment' project.id%}" style="text-align: center;" class="btn btn-primary">Review</a>
-                <p><u>ReVies for {{project.title}}</u></p>
-                {% for comment in comments%}
-                    <h6>{{comment.txt}}</h6>
-                    {%empty%}
-                    <p>Not yet Reviewed</p>
+                <input type="submit" name="" class="btn btn-outline-success">
+
+                {% for msg in messages %}
+                <h4>{{msg}}</h4>
                 {% endfor%}
 
-            </div>
-            <div class="col-sm-6">
-                <p><b>Ratings</b></p>
-                <p>Design.{{design}}%</p>
-                <p>Usability: {{usability}}%</p>
-                <p>Content: {{content}}%</p>
-            </div>
+                
+
+            </form>
         </div>
-    </div><!--end row -->
-    <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-7">
+            <h3 class="text-center">{{project.title}}</h3>
+            <hr>
+                <img src="{{project.image.url}}" alt="" width="100%">
+                <p>{{project.description}}</p>
+                <a href="{{project.link}}">{{project.link}}</a>
+                <p><b>Posted by:</b> {{project.user}}</p>
+                <hr>
             
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="{%url 'comment' project.id%}" style="text-align: center;" class="btn btn-primary">Review</a>
+                    <p><u>ReVies for {{project.title}}</u></p>
+                    {% for comment in comments%}
+                        <h6>{{comment.txt}}</h6>
+                        {%empty%}
+                        <p>Not yet Reviewed</p>
+                    {% endfor%}
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Ratings</b></p>
+                    <p>Design.{{design}}%</p>
+                    <p>Usability: {{usability}}%</p>
+                    <p>Content: {{content}}%</p>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
+
+
+<style>
+    body{
+        background-color: lavender;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    #singleproject{
+        margin-top: 30px;
+    }
+</style>
+
 {% endblock %}

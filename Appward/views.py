@@ -16,13 +16,13 @@ def welcome(request):
 @login_required(login_url='/accounts/login/')
 def index(request):
     all_projects = Project.all_projects()
-    return render(request, 'index.html', {'all_projects':all_projects})
+    return render(request, 'index.html', {'all_projects': all_projects})
 
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
-    profiles= Project.objects.filter(user = request.user)
-    return render(request,'profile.hmtl', {'profiles':profiles})
+def user_profile(request):
+    all_profiles= Project.objects.filter(user = request.user)
+    return render(request,'profile.html', {'all_profiles':all_profiles})
 
 
 @login_required(login_url='/accounts/login/')
@@ -33,7 +33,7 @@ def search_reslts(request):
         searched_project =Project.search_project(search_term)
         message = f'{search_term}'
 
-        return render(request,'search.html', {'message':message,'projects':searched_project})
+        return render(request,'search.html', {'message':message,'project':searched_project})
     
     else:
         message = 'You have not entered anything to search '
@@ -87,7 +87,7 @@ def singleProject(request, id):
 
 
 @login_required(login_url='/accounts/login/')
-def edit_profile(request):
+def profileEdit(request):
     user = request.user
     if request.method=='POST':
         form = EditProfileForm(request.POST, request.FILES)
@@ -100,6 +100,7 @@ def edit_profile(request):
     else:
         form = EditProfileForm(request.POST, request.FILES)
     return render(request, 'update_profile.html',{'form': form})
+
 
 @login_required(login_url='/accounts/login/')
 def comment(request,id):
@@ -150,6 +151,7 @@ def Rate(request, id):
         messages.info(request, 'Input all fields')
         return redirect('singleproject', id)
             
+
 @login_required(login_url='/accounts/login/')
 def logoutRequest(request):
     logout(request)

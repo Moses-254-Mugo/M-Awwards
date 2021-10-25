@@ -7,9 +7,7 @@
         <div class="col-sm-6">
             <div class="card bg-transparent">
                 <h1 class="text-center">Leave a Comments</h1>
-                <hr>
                     <div class="card-header">
-                        <h4 class="text-center"><b><u>Review project</u></b></h4>
                     </div>
                     <div class="card-body">
                         <form action="{% url 'comment' id %}" method="post" enctype="multipart/form-data">
@@ -22,4 +20,14 @@
         <div class="col-sm-3"></div>
     </div>
 </div>
+<style>
+    body{
+        background-color: lavender;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .card{
+        margin-top: 30px;
+    
+    }
+</style>
 {% endblock %}

@@ -3,8 +3,8 @@
 <div class="container">
 
   <div class="row">
-    {% if projects%}
-      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    {% if project %}
+      <h2>Found {{ project|length }} of searched term {{message}}</h2>
     {% else %}
       <h2> Found 0 projects for the search term {{message}}</h2>
     {% endif %}
@@ -13,17 +13,29 @@
 
   <div class="row">
 
-  {% if projects %}
-    {% for proj in projects %}
+  {% if project %}
+    {% for proj in project %}
       <div class="col-sm-6 col-md-3">
         <h1>{{proj.title}}</h1>
         <a href="/singleproject/{{proj.id}}">
+          <h5>Title: {{project.title}}</h5>
           <img src="{{proj.image.url}}" alt="image" width="450px">
         </a>
-          <a href="{{proj.project.link}}">{{proj.link}}</a>
+          <a href="{{proj.project.link}}" class="btn btn-outline-primary">Click to View</a>
       </div>
     {% endfor %}
   {% endif %}
   </div>
 </div>
+
+<style>
+    body{
+   
+   background: url(https://media.istockphoto.com/photos/round-podium-or-pedestal-with-blue-background-picture-id1226478932?b=1&k=20&m=1226478932&s=170667a&w=0&h=hXsvxQilNanpKx7QC_tIsFUOKPl8fdIDfJ_QSKXesGE=) no-repeat;
+   background-position: center;
+   background-size: cover;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+}
+</style>
 {% endblock %}

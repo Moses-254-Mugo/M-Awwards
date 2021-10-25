@@ -6,23 +6,44 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
             <div class="card">
-                <h3 class="text-center">{{user.username}}</h3>
+                <h3 class="text-center">{{user.username}}'s Profile</h3>
+                <hr>
                 {% if user.Profile.profile_pic%}
-                <img src="{{user.Profile.Profile_pic}}" class="card-img-top" alt="...">
+                <img src="{{user.Profile.profile_pic}}" class="card-img-top" alt="...">
+                {% else %}
+                <img style="border-radius: 50%; width: 200px; height: 200px; margin-left: 25%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSNXj1w-ssziSYzpofb8u0Jjwzt4JzQ5PcsJ7FAlRDsevjCyjeVpsfc5hrad5-N6N0oU4&usqp=CAU" alt="">
                 {% endif %}
                 <div class="card-body">
                   <h5 class="card-title">Username: {{user.username}}</h5>
-                  {%if user.profile.bio%}
-                  <p class="card-text">Bio: {{user.profile.bio}}</p>
+                  {%if user.profile.bio %}
+                  <p class="card-text">Bio: {{user.Profile.bio}}</p>
                   {% else %}
-                  <p class="text-center">You have no bio </p>
+                  <p>You have no bio </p>
                   {% endif %}
-                  <a href="/edi">Update Profile</a>
+                  <a href="/profileEdit">Update Profile</a>
                 </div>
               </div>
 
+              <div class="row">
+                <h4><u>My Project</u></h4>
+                {% for projects in all_projects %}
+                <h6>Project Title: {{projects.title}}</h6>
+                {% endfor %}
+              </div>
         </div>
         <div class="col-sm-3"></div>
     </div>
 </div>
+<style>
+  body{
+   
+   background: url(https://media.istockphoto.com/photos/round-podium-or-pedestal-with-blue-background-picture-id1226478932?b=1&k=20&m=1226478932&s=170667a&w=0&h=hXsvxQilNanpKx7QC_tIsFUOKPl8fdIDfJ_QSKXesGE=) no-repeat;
+   background-position: center;
+   background-size: cover;
+  font-family: 'Times New Roman', Times, serif;
+}
+  .card{
+    margin-top: 30px;
+  }
+</style>
 {% endblock%}
