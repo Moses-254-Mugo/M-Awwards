@@ -7,7 +7,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
 
-
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):

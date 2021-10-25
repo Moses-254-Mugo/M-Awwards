@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary',
     'tinymce',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
